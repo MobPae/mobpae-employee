@@ -1,9 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage";
-import { isAuthenticated } from "./services/auth";
+import { getToken } from "./services/auth";
 
 function ProtectedRoute() {
-  if (!isAuthenticated()) {
+  const token = getToken();
+
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
 
@@ -21,6 +23,7 @@ export default function App() {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/dashboard" element={<ProtectedRoute />} />
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
   );

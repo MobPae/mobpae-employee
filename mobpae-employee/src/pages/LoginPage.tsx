@@ -9,7 +9,7 @@ export function LoginPage() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("employee1@example.com");
-  const [password, setPassword] = useState("password123");
+  const [password, setPassword] = useState("Password@123");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -19,12 +19,16 @@ export function LoginPage() {
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    event.stopPropagation();
+
+    if (loading) return;
+
     setError("");
     setLoading(true);
 
     try {
       const response = await api.post("/auth/login", {
-        email,
+        email: email.trim(),
         password,
       });
 
@@ -97,6 +101,7 @@ export function LoginPage() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 type="email"
+                autoComplete="email"
                 className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-primary focus:bg-white focus:ring-4 focus:ring-blue-50"
               />
             </label>
@@ -107,6 +112,7 @@ export function LoginPage() {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 type="password"
+                autoComplete="current-password"
                 className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-primary focus:bg-white focus:ring-4 focus:ring-blue-50"
               />
             </label>
