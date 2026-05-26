@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage";
+import { DashboardPage } from "./pages/DashboardPage";
 import { getToken } from "./services/auth";
 
 function ProtectedRoute() {
@@ -9,13 +10,7 @@ function ProtectedRoute() {
     return <Navigate to="/login" replace />;
   }
 
-  return (
-    <div className="min-h-screen bg-soft p-4 text-dark">
-      <div className="rounded-[1.5rem] bg-white p-6 shadow-soft">
-        Employee Dashboard
-      </div>
-    </div>
-  );
+  return <DashboardPage />;
 }
 
 export default function App() {
