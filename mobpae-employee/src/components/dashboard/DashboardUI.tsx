@@ -364,15 +364,19 @@ export function FileInput({
   onChange: (file: File | null) => void;
 }) {
   return (
-    <label className="flex cursor-pointer items-center justify-between gap-3 rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-4 py-3 transition active:scale-[0.99] dark:border-slate-800 dark:bg-slate-950">
-      <span className="flex min-w-0 items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
-        <FileText size={15} className="shrink-0 text-blue-600" />
+    <label className="flex cursor-pointer items-center justify-between gap-3 rounded-[18px] border border-slate-100 bg-slate-50 px-3.5 py-2.5 transition active:scale-[0.99] dark:border-slate-800 dark:bg-slate-950">
+      <span className="flex min-w-0 items-center gap-3 text-xs font-semibold text-slate-600 dark:text-slate-300">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 dark:bg-blue-500/10">
+          <FileText size={16} />
+        </span>
 
         <span className="min-w-0">
-          <span className="block">{label}</span>
+          <span className="block text-[13px] font-black text-slate-800 dark:text-white">
+            {label}
+          </span>
 
           {file ? (
-            <span className="mt-0.5 block max-w-[180px] truncate text-[10px] font-semibold text-emerald-600">
+            <span className="mt-0.5 block max-w-[160px] truncate text-[10px] font-semibold text-emerald-600">
               {file.name}
             </span>
           ) : (
@@ -394,13 +398,13 @@ export function FileInput({
       />
 
       <span
-        className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold ${
+        className={`shrink-0 rounded-xl px-3 py-2 text-[10px] font-black ${
           file
             ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-300"
-            : "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-300"
+            : "bg-white text-blue-600 ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-700"
         }`}
       >
-        {file ? "Selected" : "Choose"}
+        {file ? "Selected" : "Upload"}
       </span>
     </label>
   );
